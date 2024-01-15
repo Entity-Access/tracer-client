@@ -16,10 +16,11 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-      - run: npm install -D typescript @web-atoms/ts-to-systemjs
+      - run: npm install -D typescript @web-atoms/ts-to-systemjs @web-atoms/pack
       - run: npm install --omit=dev
       - run: tsc
-      - run: node ./node_modules/@web-atoms/ts-to-systemjs/index.js
+      - run: tssystemjs
+      - run: web-atoms-pack
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
