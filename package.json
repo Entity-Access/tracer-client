@@ -1,0 +1,44 @@
+{
+  "name": "@entity-access/tracer-client",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --enable-source-maps ./test.mjs",
+    "postversion": "git push --follow-tags"
+  },
+  "author": "",
+  "license": "ISC",
+  "bundledDependencies": true,
+  "dependencies": {
+    "@web-atoms/core": "^2.4.1",
+    "@web-atoms/data-styles": "^1.0.108",
+    "@web-atoms/date-time": "^1.1.0",
+    "@web-atoms/email-dom": "^1.0.30",
+    "@web-atoms/entity": "^2.4.36",
+    "@web-atoms/font-awesome": "^1.0.37",
+    "@web-atoms/hybrid-clr": "^1.0.21",
+    "@web-atoms/module-loader": "^2.1.33",
+    "@web-atoms/web-controls": "^2.4.4",
+    "reflect-metadata": "^0.1.13",
+    "tinycolor2": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/stripe-v3": "^3.1.26",
+    "@types/tinycolor2": "^1.4.6",
+    "@types/webrtc": "^0.0.33",
+    "@typescript-eslint/eslint-plugin": "^5.59.9",
+    "@typescript-eslint/parser": "^5.59.9",
+    "chart.js": "^3.9.1",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsdoc": "^46.2.6",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.32.2",
+    "tslib": "^2.4.1"
+  }
+}

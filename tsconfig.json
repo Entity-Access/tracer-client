@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module":"System",
+        "incremental": true,
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "outDir": "dist",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "removeComments": true,
+        "declaration": true,
+        "declarationMap": true,
+        "importHelpers": true,
+        "skipLibCheck": true,
+        "jsx": "react",
+        "jsxFactory": "XNode.create",
+        "lib": [
+            "es6",
+            "ES2019",
+            "dom",
+            "ES2019.String"
+        ]
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+		"node_modules",
+        "tests"
+    ]
+}
