@@ -8,4 +8,9 @@ export default class AppCommands extends Commands {
         openPage: () => import("../page/home/HomePage")
     });
 
+    static setupMultiFactor = Command.create({
+        route: "/user/multi-factor/setup",
+        pushPage: () => import("../page/user/multi-factor/MultiFactorSetupPage")
+    });
+
 }
