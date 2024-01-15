@@ -13,4 +13,9 @@ export default class AppCommands extends Commands {
         pushPage: () => import("../page/user/multi-factor/MultiFactorSetupPage")
     });
 
+    static changePassword = Command.create({
+        route: "/user/change-password",
+        pushPage: () => import("../page/user/change-password/ChangePasswordPage")
+    });
+
 }

@@ -4,12 +4,12 @@ import InjectProperty from "@web-atoms/core/dist/core/InjectProperty";
 import UserService from "../services/UserService";
 import XNode from "@web-atoms/core/dist/core/XNode";
 import Form from "@web-atoms/web-controls/dist/basic/Form";
-import { AddIconTextButton, DeleteIconTextButton, SaveIconButton, SaveIconTextButton } from "../../../controls/buttons/IconButton";
 import FormField from "@web-atoms/web-controls/dist/basic/FormField";
 import Bind from "@web-atoms/core/dist/core/Bind";
 import Action from "@web-atoms/core/dist/view-model/Action";
 import AtomRepeater from "@web-atoms/web-controls/dist/basic/AtomRepeater";
-import { DateFormats } from "../../../date/DateFormats";
+import { DateFormats } from "../../../../common/date/DateFormats";
+import { AddIconTextButton, DeleteIconTextButton, SaveIconTextButton } from "../../../../controls/buttons/IconButton";
 
 export default class MultiFactorSetupPage extends ContentPage {
 

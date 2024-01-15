@@ -2,7 +2,7 @@ import DITransient from "@web-atoms/core/dist/di/DITransient";
 import { Inject } from "@web-atoms/core/dist/di/Inject";
 import EntityService from "../../../../services/EntityService";
 import { IUser, IUserAuthFactor, User, UserAuthFactor } from "../../../../model/model";
-import SocialMailApp from "../../../SocialMailApp";
+import GlobalApp from "../../../../GlobalApp";
 
 @DITransient()
 export default class UserService {
@@ -12,7 +12,7 @@ export default class UserService {
 
     async getCurrent() {
 
-        const { userID } = SocialMailApp.user;
+        const { userID } = GlobalApp.user;
 
         return this.entityService.query(User)
             .where({ userID }, (p) => (x) => x.userID === p.userID)

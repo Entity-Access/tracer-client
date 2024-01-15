@@ -2,9 +2,9 @@ import DISingleton from "@web-atoms/core/dist/di/DISingleton";
 import { Inject } from "@web-atoms/core/dist/di/Inject";
 import EntityService from "./EntityService";
 import { ILoginSession, IUser, LoginSession, User } from "../model/model";
-import SocialMailApp from "../common/SocialMailApp";
 import { App } from "@web-atoms/core/dist/App";
 import WebPushService from "./WebPushService";
+import GlobalApp from "../GlobalApp";
 
 @DISingleton()
 export default class LoginService {
@@ -19,7 +19,7 @@ export default class LoginService {
 
     public async getUser() {
         this.user ??= (await this.entityService.query(LoginSession, "currentUser").firstOrDefault())?.user;
-        SocialMailApp.user = this.user;
+        GlobalApp.user = this.user;
         return this.user;
     }
 

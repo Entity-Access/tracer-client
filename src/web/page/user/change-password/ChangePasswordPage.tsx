@@ -4,14 +4,14 @@ import InjectProperty from "@web-atoms/core/dist/core/InjectProperty";
 import UserService from "../services/UserService";
 import XNode from "@web-atoms/core/dist/core/XNode";
 import Form from "@web-atoms/web-controls/dist/basic/Form";
-import { PasswordFormField } from "../../../controls/form/RequiredFormField";
 import Bind from "@web-atoms/core/dist/core/Bind";
-import PasswordStrength from "../../../controls/password/PasswordStrength";
 import FormField from "@web-atoms/web-controls/dist/basic/FormField";
 import PasswordBox from "@web-atoms/web-controls/dist/basic/PasswordBox";
-import { Validators } from "../../../validators/Validators";
-import { SaveIconTextButton } from "../../../controls/buttons/IconButton";
 import Action from "@web-atoms/core/dist/view-model/Action";
+import { PasswordFormField } from "../../../../controls/form/RequiredFormField";
+import { Validators } from "../../../../controls/validators/Validators";
+import { SaveIconTextButton } from "../../../../controls/buttons/IconButton";
+import PasswordStrength from "../../../../controls/password/PasswordStrength";
 
 export default class ChangePasswordPage extends PopupWindowPage {
 

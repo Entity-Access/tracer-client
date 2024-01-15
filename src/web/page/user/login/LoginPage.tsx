@@ -8,12 +8,10 @@ import PasswordBox from "@web-atoms/web-controls/dist/basic/PasswordBox";
 import Action from "@web-atoms/core/dist/view-model/Action";
 import InjectProperty from "@web-atoms/core/dist/core/InjectProperty";
 import LoginService from "../../../../services/LoginService";
-import { PasswordFormField } from "../../../controls/form/RequiredFormField";
-import sleep from "@web-atoms/core/dist/core/sleep";
-import PasswordStrength from "../../../controls/password/PasswordStrength";
-import { Validators } from "../../../validators/Validators";
 import ToggleButtonBar from "@web-atoms/web-controls/dist/basic/ToggleButtonBar";
-import { SaveIconTextButton } from "../../../controls/buttons/IconButton";
+import { SaveIconTextButton } from "../../../../controls/buttons/IconButton";
+import PasswordStrength from "../../../../controls/password/PasswordStrength";
+import { Validators } from "../../../../controls/validators/Validators";
 
 const authTypes = [{
     label: "Authenticator (TOTP)",
