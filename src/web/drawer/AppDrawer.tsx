@@ -49,7 +49,7 @@ export default class AppDrawer extends Drawer {
                 data-padding="large"
                 data-font-size="large"
                 data-color="white"
-                text="Social Mail"/>
+                text="Tracer"/>
             <div
                 class="menus"
                 >
