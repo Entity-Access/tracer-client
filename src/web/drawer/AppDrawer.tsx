@@ -58,6 +58,21 @@ export default class AppDrawer extends Drawer {
                     label="Home"
                     commandLink={AppCommands.openHome.displayRoute({})}
                     />
+                <ExpanderMenu isExpanded={true}>
+                    <MenuItem
+                        icon="fas fa-plus"
+                        label="Sources"
+                        />
+                    <MenuItem
+                        icon="fas fa-plus"
+                        label="All"
+                        commandLink={AppCommands.sourceList.displayRoute({})}
+                        />
+                    <MenuItem
+                        icon="fas fa-plus"
+                        label="Add New"
+                        />
+                </ExpanderMenu>
                 <ExpanderMenu isExpanded={false}>
                     <MenuItem
                         icon="fas fa-gears"

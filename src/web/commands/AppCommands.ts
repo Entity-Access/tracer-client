@@ -18,4 +18,9 @@ export default class AppCommands extends Commands {
         pushPage: () => import("../page/user/change-password/ChangePasswordPage")
     });
 
+    static sourceList = Command.create({
+        route: "/sources",
+        routeOrder: 200,
+        openPage: () => import("../page/sources/SourceListPage")
+    })
 }

@@ -29,6 +29,84 @@ export interface ILoginSession extends IClrEntity {
 
 export const LoginSession: IModel<ILoginSession> = new Model<ILoginSession>("LoginSession", ["sessionID"], { invalid: false,dateUpdated: new DefaultFactory(() => new DateTime()) });
 
+export interface ITrace extends IClrEntity {
+	readonly traceID?: number;
+	sourceID?: number;
+	dateCreated?: DateTime;
+	type?: string;
+	serverID?: number | null;
+	appID?: number | null;
+	sessionID?: number | null;
+	hostID?: number | null;
+	path?: string | null;
+	ipAddress?: string | null;
+	userID?: number | null;
+	json?: string | null;
+	source?: ITracerSource;
+	server?: ITracerName;
+	app?: ITracerName;
+	session?: ITracerName;
+	host?: ITracerName;
+	user?: ITracerName;
+	traceTags?: ICollection<ITraceTag>;
+}
+
+export const Trace: IModel<ITrace> = new Model<ITrace>("Trace", ["traceID"], { dateCreated: new DefaultFactory(() => new DateTime()),type: "" });
+
+export interface ITracerName extends IClrEntity {
+	readonly nameID?: number;
+	type?: string;
+	name?: string;
+	serverTraces?: ICollection<ITrace>;
+	appTraces?: ICollection<ITrace>;
+	sessionTraces?: ICollection<ITrace>;
+	hostTraces?: ICollection<ITrace>;
+	userTraces?: ICollection<ITrace>;
+}
+
+export const TracerName: IModel<ITracerName> = new Model<ITracerName>("TracerName", ["nameID"], { type: "",name: "" });
+
+export interface ITracerKey extends IClrEntity {
+	readonly keyID?: number;
+	sourceID?: number;
+	key?: string;
+	source?: ITracerSource;
+}
+
+export const TracerKey: IModel<ITracerKey> = new Model<ITracerKey>("TracerKey", ["keyID"], { key: "" });
+
+export interface ITracerSource extends IClrEntity {
+	readonly sourceID?: number;
+	userID?: number;
+	name?: string;
+	user?: IUser;
+	traces?: ICollection<ITrace>;
+	keySources?: ICollection<ITracerKey>;
+}
+
+export const TracerSource: IModel<ITracerSource> = new Model<ITracerSource>("TracerSource", ["sourceID"], { name: "" });
+
+export interface ITraceTag extends IClrEntity {
+	traceID?: number;
+	tagID?: number;
+	value?: string | null;
+	trace?: ITrace;
+	tag?: ITag;
+}
+
+export const TraceTag: IModel<ITraceTag> = new Model<ITraceTag>("TraceTag", ["traceID","tagID"], {  });
+
+export interface ITag extends IClrEntity {
+	readonly tagID?: number;
+	name?: string;
+	parentID?: number | null;
+	parent?: ITag;
+	children?: ICollection<ITag>;
+	traceTags?: ICollection<ITraceTag>;
+}
+
+export const Tag: IModel<ITag> = new Model<ITag>("Tag", ["tagID"], { name: "" });
+
 export interface IUser extends IClrEntity {
 	readonly userID?: number;
 	userName?: string;
@@ -41,6 +119,7 @@ export interface IUser extends IClrEntity {
 	changePassword?: { oldPassword?: string;newPassword?: string;forceChangePasswordOnLogin?: boolean };
 	createFolder?: boolean;
 	sessions?: ICollection<ILoginSession>;
+	sources?: ICollection<ITracerSource>;
 	authFactors?: ICollection<IUserAuthFactor>;
 	roles?: ICollection<IUserRole>;
 }
