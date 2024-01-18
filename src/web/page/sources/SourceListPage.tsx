@@ -6,7 +6,7 @@ import TraceSourceService from "./services/TraceSourceService";
 import InfiniteRepeater from "../../../common/InfiniteRepeater";
 import { ITraceSource, TraceSource } from "../../../model/model";
 import Bind from "@web-atoms/core/dist/core/Bind";
-import { AddIconTextButton } from "../../../controls/buttons/IconButton";
+import { AddIconTextButton, DeleteIconTextButton } from "../../../controls/buttons/IconButton";
 import Action from "@web-atoms/core/dist/view-model/Action";
 
 export default class SourceListPage extends ContentPage {
@@ -46,6 +46,23 @@ export default class SourceListPage extends ContentPage {
                     )}
                 itemRenderer={(item: ITraceSource) => <div>
                     <label text={item.name}/>
+                    { item.keySources?.length
+                        && <label
+                            data-click-event="show-keys"
+                            data-cursor="pointer"
+                            text={`Keys: ${item.keySources?.length}`}/> }
+                    { item.keySources?.length && <div>
+                        <div data-layout="vertical-flex-center-items">
+                            { ... item.keySources.map((s) => <input
+                                readOnly={true}
+                                style-width="40ch"
+                                value={s.key} />)}
+                        </div>
+                    </div> }
+                    <br/>
+                    <DeleteIconTextButton
+                        data-click-event="delete-source"
+                        />
                 </div>}
                 />
         </div>;
@@ -58,10 +75,20 @@ export default class SourceListPage extends ContentPage {
             return;
         }
 
-        this.sourceService.save(TraceSource.create({
+        await this.sourceService.save(TraceSource.create({
             name
         }));
 
         this.version++;
     }
+
+    @Action({
+        onEvent: "delete-source",
+        confirm: "Are you sure you want to delete this source?"
+    })
+    async deleteSource(source: ITraceSource) {
+        await this.sourceService.delete(source);
+        this.version++;
+    }
+
 }
