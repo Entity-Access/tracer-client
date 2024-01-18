@@ -42,18 +42,18 @@ export interface ITrace extends IClrEntity {
 	ipAddress?: string | null;
 	userID?: number | null;
 	json?: string | null;
-	source?: ITracerSource;
-	server?: ITracerName;
-	app?: ITracerName;
-	session?: ITracerName;
-	host?: ITracerName;
-	user?: ITracerName;
+	source?: ITraceSource;
+	server?: ITraceName;
+	app?: ITraceName;
+	session?: ITraceName;
+	host?: ITraceName;
+	user?: ITraceName;
 	traceTags?: ICollection<ITraceTag>;
 }
 
 export const Trace: IModel<ITrace> = new Model<ITrace>("Trace", ["traceID"], { dateCreated: new DefaultFactory(() => new DateTime()),type: "" });
 
-export interface ITracerName extends IClrEntity {
+export interface ITraceName extends IClrEntity {
 	readonly nameID?: number;
 	type?: string;
 	name?: string;
@@ -64,27 +64,36 @@ export interface ITracerName extends IClrEntity {
 	userTraces?: ICollection<ITrace>;
 }
 
-export const TracerName: IModel<ITracerName> = new Model<ITracerName>("TracerName", ["nameID"], { type: "",name: "" });
+export const TraceName: IModel<ITraceName> = new Model<ITraceName>("TraceName", ["nameID"], { type: "",name: "" });
 
-export interface ITracerKey extends IClrEntity {
+export interface ISourceKey extends IClrEntity {
 	readonly keyID?: number;
 	sourceID?: number;
 	key?: string;
-	source?: ITracerSource;
+	source?: ITraceSource;
 }
 
-export const TracerKey: IModel<ITracerKey> = new Model<ITracerKey>("TracerKey", ["keyID"], { key: "" });
+export const SourceKey: IModel<ISourceKey> = new Model<ISourceKey>("SourceKey", ["keyID"], { key: "" });
 
-export interface ITracerSource extends IClrEntity {
-	readonly sourceID?: number;
+export interface ISourceUser extends IClrEntity {
 	userID?: number;
-	name?: string;
+	sourceID?: number;
+	readonly?: boolean;
 	user?: IUser;
-	traces?: ICollection<ITrace>;
-	keySources?: ICollection<ITracerKey>;
+	source?: ITraceSource;
 }
 
-export const TracerSource: IModel<ITracerSource> = new Model<ITracerSource>("TracerSource", ["sourceID"], { name: "" });
+export const SourceUser: IModel<ISourceUser> = new Model<ISourceUser>("SourceUser", ["userID","sourceID"], { readonly: false });
+
+export interface ITraceSource extends IClrEntity {
+	readonly sourceID?: number;
+	name?: string;
+	traces?: ICollection<ITrace>;
+	keySources?: ICollection<ISourceKey>;
+	sourceUsers?: ICollection<ISourceUser>;
+}
+
+export const TraceSource: IModel<ITraceSource> = new Model<ITraceSource>("TraceSource", ["sourceID"], { name: "" });
 
 export interface ITraceTag extends IClrEntity {
 	traceID?: number;
@@ -119,7 +128,7 @@ export interface IUser extends IClrEntity {
 	changePassword?: { oldPassword?: string;newPassword?: string;forceChangePasswordOnLogin?: boolean };
 	createFolder?: boolean;
 	sessions?: ICollection<ILoginSession>;
-	sources?: ICollection<ITracerSource>;
+	sourceUsers?: ICollection<ISourceUser>;
 	authFactors?: ICollection<IUserAuthFactor>;
 	roles?: ICollection<IUserRole>;
 }
