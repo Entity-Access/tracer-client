@@ -12,13 +12,13 @@
   "bundledDependencies": true,
   "dependencies": {
     "@web-atoms/core": "^2.4.1",
-    "@web-atoms/data-styles": "^1.0.108",
+    "@web-atoms/data-styles": "^1.0.109",
     "@web-atoms/date-time": "^1.1.0",
     "@web-atoms/email-dom": "^1.0.30",
     "@web-atoms/entity": "^2.4.36",
     "@web-atoms/font-awesome": "^1.0.37",
     "@web-atoms/hybrid-clr": "^1.0.21",
-    "@web-atoms/module-loader": "^2.1.33",
+    "@web-atoms/module-loader": "^2.1.34",
     "@web-atoms/web-controls": "^2.4.4",
     "reflect-metadata": "^0.1.13",
     "tinycolor2": "^1.6.0"

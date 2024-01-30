@@ -9,7 +9,7 @@ export default class TraceService {
     @Inject
     private entityService: EntityService;
 
-    get({
+    list({
         search = "",
         start = 0,
         size = 100,
@@ -33,4 +33,10 @@ export default class TraceService {
         });
     }
 
+    get(id) {
+        return this.entityService.query(Trace)
+            .where({ id}, (p) => (x) => x.traceID === p.id)
+            .include((x) => [x.host, x.app, x.server, x.session, x.user, x.traceTags])
+            .firstOrDefault();
+    }
 }
