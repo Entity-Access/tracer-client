@@ -13,6 +13,7 @@ export default class TraceService {
         search = "",
         start = 0,
         size = 100,
+        version = 0,
         cancelToken
     }) {
         let q = this.entityService.query(Trace);

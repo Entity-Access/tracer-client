@@ -57,7 +57,8 @@ export default class HomePage extends ContentPage {
                 { ... InfiniteRepeater.pagedItems((start) =>
                         (c, e, cancelToken) => this.traceService.list({
                             start,
-                            cancelToken
+                            cancelToken,
+                            version: this.version
                         }))}
                 itemRenderer={(item: ITrace) => {
                     const { log, error, host } = JSON.parse(item.json);
