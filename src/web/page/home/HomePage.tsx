@@ -46,6 +46,10 @@ export default class HomePage extends ContentPage {
 
         this.element.className = css;
 
+        this.headerRenderer = () => <div data-layout="row">
+            <button event-click={() => this.version++} text="Refresh"/>
+        </div>;
+
         this.renderer = <div>
             <AtomRepeater
                 items={this.traces}
