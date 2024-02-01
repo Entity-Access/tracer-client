@@ -78,6 +78,7 @@ export default class HomePage extends ContentPage {
                             data-color={ error ? "red" : "none" }
                             text={host || "None"}/>
                         <label
+                            data-min-width="size-2xl"
                             class="log"
                             text={log || error}/>
                         <label
