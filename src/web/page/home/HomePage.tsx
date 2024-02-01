@@ -11,6 +11,8 @@ import Action from "@web-atoms/core/dist/view-model/Action";
 import PageNavigator from "@web-atoms/web-controls/dist/PageNavigator";
 import TraceDetailPage from "../traces/detail/TraceDetailPage";
 import styled from "@web-atoms/core/dist/style/styled";
+import Select from "@web-atoms/web-controls/dist/basic/Select";
+import Bind from "@web-atoms/core/dist/core/Bind";
 
 const css = styled.css `
     & .trace {
@@ -24,6 +26,11 @@ const css = styled.css `
     }
 `.installLocal();
 
+const types = [
+    { label: "All", value: "" },
+    { label: "Error", value: "error"}
+];
+
 export default class HomePage extends ContentPage {
 
     @InjectProperty
@@ -36,6 +43,8 @@ export default class HomePage extends ContentPage {
 
     version = 1;
 
+    type = "";
+
     async init() {
 
         this.registerDisposable(await this.liveTrace.join("*", {
@@ -47,6 +56,7 @@ export default class HomePage extends ContentPage {
         this.element.className = css;
 
         this.headerRenderer = () => <div data-layout="row">
+            <Select items={types} value={Bind.twoWaysImmediate(() => this.type)}/>
             <button event-click={() => this.version++} text="Refresh"/>
         </div>;
 
@@ -58,6 +68,7 @@ export default class HomePage extends ContentPage {
                         (c, e, cancelToken) => this.traceService.list({
                             start,
                             cancelToken,
+                            type: this.type,
                             version: this.version
                         }))}
                 itemRenderer={(item: ITrace) => {

@@ -11,6 +11,7 @@ export default class TraceService {
 
     list({
         search = "",
+        type = "",
         start = 0,
         size = 100,
         version = 0,
@@ -19,6 +20,9 @@ export default class TraceService {
         let q = this.entityService.query(Trace);
         if (search) {
             
+        }
+        if (type) {
+            q = q.where({ type }, (p) => (x) => x.type === p.type);
         }
         return q.include((x) => [
             x.host,

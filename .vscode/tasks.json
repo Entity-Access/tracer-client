@@ -27,7 +27,7 @@
             "command": "wads",
             "args": [
                 // "https://localhost",
-                "https://tracer2.socialmail.in"
+                "https://tracer.socialmail.in"
             ],
             "problemMatcher": []
         }
