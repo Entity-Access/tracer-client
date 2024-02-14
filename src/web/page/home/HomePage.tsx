@@ -13,6 +13,7 @@ import TraceDetailPage from "../traces/detail/TraceDetailPage";
 import styled from "@web-atoms/core/dist/style/styled";
 import Select from "@web-atoms/web-controls/dist/basic/Select";
 import Bind from "@web-atoms/core/dist/core/Bind";
+import NameDropDown from "../../../controls/drop-downs/NameDropDown";
 
 const css = styled.css `
     & .trace {
@@ -43,6 +44,8 @@ export default class HomePage extends ContentPage {
 
     version = 1;
 
+    hostID = 0;
+
     type = "";
 
     async init() {
@@ -57,6 +60,10 @@ export default class HomePage extends ContentPage {
 
         this.headerRenderer = () => <div data-layout="row">
             <Select items={types} value={Bind.twoWaysImmediate(() => this.type)}/>
+            <NameDropDown
+                type="host"
+                value={Bind.twoWaysImmediate(() => this.hostID)}
+                />
             <button event-click={() => this.version++} text="Refresh"/>
         </div>;
 
@@ -68,6 +75,7 @@ export default class HomePage extends ContentPage {
                         (c, e, cancelToken) => this.traceService.list({
                             start,
                             cancelToken,
+                            hostID: this.hostID,
                             type: this.type,
                             version: this.version
                         }))}

@@ -12,6 +12,7 @@ export default class TraceService {
     list({
         search = "",
         type = "",
+        hostID = 0,
         start = 0,
         size = 100,
         version = 0,
@@ -23,6 +24,9 @@ export default class TraceService {
         }
         if (type) {
             q = q.where({ type }, (p) => (x) => x.type === p.type);
+        }
+        if (hostID) {
+            q = q.where({ hostID} , (p) => (x) => x.hostID === p.hostID);
         }
         return q.include((x) => [
             x.host,
